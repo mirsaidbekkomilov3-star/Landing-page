@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirsaid | Frontend Dasturchi & UI/UX Dizayner Portfolio</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            cyan: '#06b6d4',
+                            violet: '#8b5cf6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-slate-200/50 dark:border-slate-800/50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-300">
+                        M
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 dark:from-white dark:via-indigo-200 dark:to-cyan-200 bg-clip-text text-transparent">
+                        Mirsaid<span class="text-indigo-500">.dev</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Men haqimda</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Ko'nikmalar</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Loyihalar</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Bog'lanish</a>
+                </nav>
+
+                <!-- Action Controls -->
+                <div class="flex items-center gap-4">
+                    <!-- Theme Toggle Button -->
+                    <button id="themeToggleBtn" aria-label="Tungi/Kunduzgi rejim" class="p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-cyan-400 transition-all focus:outline-none">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+
+                    <!-- Contact Quick CTA -->
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all hover:-translate-y-0.5">
+                        <span>Bog'lanish</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" aria-label="Menyu" class="md:hidden p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-indigo-600">
+                        <i id="mobileMenuIcon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-4 pt-3 pb-6 transition-all duration-300">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="mobile-link text-slate-700 dark:text-slate-200 hover:text-indigo-600 font-medium py-2">Men haqimda</a>
+                <a href="#skills" class="mobile-link text-slate-700 dark:text-slate-200 hover:text-indigo-600 font-medium py-2">Ko'nikmalar</a>
+                <a href="#projects" class="mobile-link text-slate-700 dark:text-slate-200 hover:text-indigo-600 font-medium py-2">Loyihalar</a>
+                <a href="#contact" class="mobile-link text-slate-700 dark:text-slate-200 hover:text-indigo-600 font-medium py-2">Bog'lanish</a>
+                <a href="#contact" class="mobile-link text-center w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm shadow-md">
+                    Bog'lanish
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[calc(100vh-80px)] flex items-center justify-center py-16 overflow-hidden">
+            <div class="absolute top-1/4 left-10 w-72 h-72 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-10 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Text Info -->
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/60 text-indigo-600 dark:text-indigo-300 font-semibold text-xs tracking-wide uppercase mb-6 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Yangi loyihalar uchun ochiqman
+                        </div>
+
+                        <h1 class="text-4xl sm:text-6xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight mb-6">
+                            Salom, men <span class="bg-gradient-to-r from-indigo-600 via-violet-500 to-cyan-400 bg-clip-text text-transparent">Mirsaid</span>
+                        </h1>
+
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-600 dark:text-slate-300 mb-6 flex items-center justify-center lg:justify-start gap-2">
+                            <span>Frontend Dasturchi</span>
+                            <span class="text-indigo-500">&amp;</span>
+                            <span>UI/UX Dizayner</span>
+                        </h2>
+
+                        <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                            Zamonaviy, tez ishlaydigan hamda foydalanuvchilar uchun qulay bo'lgan veb-saytlar va raqamli mahsulotlarni yaratish bilan shug'ullanaman. Dizayn va kod o'rtasidagi mukammallikka intilaman.
+                        </p>
+
+                        <!-- Buttons & Social Links -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+                            <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-base shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                                <span>Loyihalarimni ko'rish</span>
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </a>
+                            <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 font-semibold text-base transition-all flex items-center justify-center gap-2">
+                                <span>Bog'lanish</span>
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </a>
+                        </div>
+
+                        <!-- Social Buttons Bar -->
+                        <div class="flex items-center justify-center lg:justify-start gap-4">
+                            <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Ijtimoiy tarmoqlar:</span>
+                            <div class="flex gap-2">
+                                <a href="https://t.me/mirsaid_dev" target="_blank" aria-label="Telegram" class="w-10 h-10 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 flex items-center justify-center transition-all text-slate-600 dark:text-slate-300">
+                                    <i class="fa-brands fa-telegram text-lg"></i>
+                                </a>
+                                <a href="https://github.com" target="_blank" aria-label="GitHub" class="w-10 h-10 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 flex items-center justify-center transition-all text-slate-600 dark:text-slate-300">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="w-10 h-10 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 flex items-center justify-center transition-all text-slate-600 dark:text-slate-300">
+                                    <i class="fa-brands fa-linkedin-in text-lg"></i>
+                                </a>
+                                <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="w-10 h-10 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 flex items-center justify-center transition-all text-slate-600 dark:text-slate-300">
+                                    <i class="fa-brands fa-instagram text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graphic Avatar -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+                            <div class="absolute inset-0 rounded-full border-2 border-dashed border-indigo-500/30 animate-[spin_20s_linear_infinite]"></div>
+                            <div class="absolute inset-4 rounded-full border border-indigo-500/20"></div>
+                            
+                            <div class="absolute inset-8 rounded-3xl bg-gradient-to-tr from-indigo-600 via-violet-600 to-cyan-400 p-1 shadow-2xl shadow-indigo-500/30">
+                                <div class="w-full h-full rounded-[22px] bg-slate-900 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                                    <div class="w-24 h-24 rounded-full bg-slate-800 border-2 border-indigo-400 flex items-center justify-center text-4xl text-indigo-400 mb-4 shadow-inner">
+                                        <i class="fa-solid fa-code"></i>
+                                    </div>
+                                    <span class="text-white font-bold text-lg mb-1">&lt;Mirsaid /&gt;</span>
+                                    <span class="text-slate-400 text-xs tracking-widest uppercase">Frontend Specialist</span>
+
+                                    <div class="absolute top-4 left-4 px-3 py-1.5 rounded-lg bg-slate-800/90 border border-slate-700 text-xs text-cyan-400 font-mono shadow">
+                                        React.js
+                                    </div>
+                                    <div class="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-slate-800/90 border border-slate-700 text-xs text-violet-400 font-mono shadow">
+                                        Tailwind
+                                    </div>
+                                    <div class="absolute bottom-10 left-4 px-3 py-1.5 rounded-lg bg-slate-800/90 border border-slate-700 text-xs text-emerald-400 font-mono shadow">
+                                        JavaScript
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-20 relative bg-slate-100/60 dark:bg-slate-900/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                        Men haqimda
+                    </h2>
+                    <div class="w-16 h-1 bg-indigo-600 mx-auto rounded-full"></div>
+                    <p class="text-slate-600 dark:text-slate-400 mt-4 text-base sm:text-lg">
+                        Kodlash va dizaynga bo'lgan ishtiyoqim va maqsadlarim haqida qisqacha.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <p class="text-lg font-semibold text-slate-800 dark:text-slate-100">
+                            Salom! Men Mirsaidman, zamonaviy veb-texnologiyalar yordamida interaktiv va sifatli raqamli platformalar yaratuvchi mutaxassisman.
+                        </p>
+                        <p>
+                            So'nggi 3+ yil davomida men turli xil murakkablikdagi veb-saytlar, boshqaruv panellari (dashboard) va e-commerce tizimlarini ishlab chiqdim. Mening asosiy e'tiborim foydalanuvchi tajribasini (UX) maksimal darajada qulay qilish va kod sifatini toza va optimallashgan holda saqlashga qaratilgan.
+                        </p>
+                        <p>
+                            Har bir loyihaga individual yondashib, eng so'nggi texnologiyalar (React, Next.js, Tailwind CSS) hamda dizayn prinsiplaridan (Figma, Responsive Design) foydalanaman.
+                        </p>
+
+                        <div class="pt-4">
+                            <button id="downloadCvBtn" class="px-6 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:bg-indigo-600 dark:hover:bg-indigo-400 transition-all flex items-center gap-3 shadow-md">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Rezyumeni yuklab olish (CV)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-3 text-2xl">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <span class="block text-3xl font-extrabold text-slate-900 dark:text-white mb-1">3+ yil</span>
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tajriba</span>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mx-auto mb-3 text-2xl">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                            <span class="block text-3xl font-extrabold text-slate-900 dark:text-white mb-1">25+</span>
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Bajarilgan loyihalar</span>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-3 text-2xl">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <span class="block text-3xl font-extrabold text-slate-900 dark:text-white mb-1">15+</span>
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Mamnun mijozlar</span>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-violet-500/10 text-violet-600 dark:text-violet-400 flex items-center justify-center mx-auto mb-3 text-2xl">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <span class="block text-3xl font-extrabold text-slate-900 dark:text-white mb-1">100%</span>
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Sifat kafolati</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                        Mening Ko'nikmalarim
+                    </h2>
+                    <div class="w-16 h-1 bg-indigo-600 mx-auto rounded-full"></div>
+                    <p class="text-slate-600 dark:text-slate-400 mt-4 text-base sm:text-lg">
+                        Loyiha va mahsulotlar yaratishda foydalanadigan asosiy texnologik va dizayn vositalarim.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skill 1 -->
+                    <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-html5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">HTML5 &amp; CSS3</h3>
+                                    <span class="text-xs text-slate-500">Semantik &amp; Reponsiv tuzilma</span>
+                                </div>
+                            </div>
+                            <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">95%</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-orange-500 to-amber-500 rounded-full transition-all duration-1000" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-yellow-500/10 text-yellow-500 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-square-js"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">JavaScript (ES6+)</h3>
+                                    <span class="text-xs text-slate-500">Async JS, DOM, API integrations</span>
+                                </div>
+                            </div>
+                            <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">90%</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full transition-all duration-1000" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 3 -->
+                    <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-react"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">React.js</h3>
+                                    <span class="text-xs text-slate-500">Hooks, Redux, Context API</span>
+                                </div>
+                            </div>
+                            <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">88%</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transition-all duration-1000" style="width: 88%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-wind"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Tailwind CSS</h3>
+                                    <span class="text-xs text-slate-500">Utility-first styling &amp; UI</span>
+                                </div>
+                            </div>
+                            <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">92%</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full transition-all duration-1000" style="width: 92%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 5 -->
+                    <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-figma"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">UI/UX Dizayn (Figma)</h3>
+                                    <span class="text-xs text-slate-500">Wireframing, Prototyping</span>
+                                </div>
+                            </div>
+                            <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">85%</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full transition-all duration-1000" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 6 -->
+                    <div class="glass-card p-6 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-git-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Git &amp; GitHub</h3>
+                                    <span class="text-xs text-slate-500">Versiya boshqaruvi &amp; Teamwork</span>
+                                </div>
+                            </div>
+                            <span class="text-sm font-extrabold text-indigo-600 dark:text-indigo-400">87%</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-rose-500 to-red-500 rounded-full transition-all duration-1000" style="width: 87%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="py-20 relative bg-slate-100/60 dark:bg-slate-900/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                        Saralangan Loyihalar
+                    </h2>
+                    <div class="w-16 h-1 bg-indigo-600 mx-auto rounded-full"></div>
+                    <p class="text-slate-600 dark:text-slate-400 mt-4 text-base sm:text-lg">
+                        Mening oxirgi ishlarim va amaliyotlarim bilan tanishing.
+                    </p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex justify-center items-center gap-2 mb-12 flex-wrap">
+                    <button class="filter-btn active px-5 py-2 rounded-xl text-sm font-semibold transition-all bg-indigo-600 text-white shadow-md shadow-indigo-500/20" data-filter="all">
+                        Barchasi
+                    </button>
+                    <button class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold transition-all bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700" data-filter="web">
+                        Veb-saytlar
+                    </button>
+                    <button class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold transition-all bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700" data-filter="design">
+                        UI/UX Dizayn
+                    </button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 shadow-lg" data-category="web">
+                        <div class="h-52 bg-gradient-to-tr from-indigo-900 via-slate-900 to-indigo-950 p-6 relative overflow-hidden flex items-center justify-center">
+                            <div class="w-full h-full bg-slate-800/80 rounded-xl border border-slate-700 p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-300 flex flex-col justify-between">
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-2">
+                                    <div class="flex gap-1.5">
+                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-mono">ecostore.uz</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="w-3/4 h-3 bg-indigo-500/40 rounded"></div>
+                                    <div class="w-1/2 h-3 bg-cyan-500/40 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 text-xs font-semibold">React</span>
+                                <span class="px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 text-xs font-semibold">Tailwind</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-500 transition-colors">EcoStore - E-Commerce Platforma</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                                Zamonaviy onlayn do'kon platformasi. Savatcha, to'lov tizimi integratsiyasi va foydalanuvchi kabineti mavjud.
+                            </p>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('EcoStore - E-Commerce Platforma', 'React va Tailwind CSS yordamida yaratilgan to\'liq funksional e-commerce platformasi. Foydalanuvchilar mahsulotlarni filtrlash, savatchaga qo\'shish va to\'lov qilish imkoniyatiga ega.', ['React', 'Tailwind CSS', 'Redux Toolkit'], 'https://github.com')" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+                                    <span>Batafsil ko'rish</span>
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" aria-label="GitHub Link">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 shadow-lg" data-category="web">
+                        <div class="h-52 bg-gradient-to-tr from-purple-900 via-slate-900 to-indigo-950 p-6 relative overflow-hidden flex items-center justify-center">
+                            <div class="w-full h-full bg-slate-800/80 rounded-xl border border-slate-700 p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-300 flex flex-col justify-between">
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-2">
+                                    <div class="flex gap-1.5">
+                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-mono">devtask.io</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="h-10 bg-slate-700/60 rounded"></div>
+                                    <div class="h-10 bg-indigo-600/40 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-300 text-xs font-semibold">JavaScript</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-300 text-xs font-semibold">REST API</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-500 transition-colors">DevTask - Loyihalarni Boshqarish Tizimi</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                                Jamoalar uchun vazifalarni (Kanban doska) taqsimlash va kuzatib borish uchun mo'ljallangan veb ilova.
+                            </p>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('DevTask - Task Manager', 'DevTask - bu dasturchilar va jamoalar uchun mo\'ljallangan topshiriqlarni boshqarish platformasi. Kanban doskasi, analitika va muddatlarni belgilash funksiyalarini o\'z ichiga oladi.', ['JavaScript ES6+', 'HTML5/CSS3', 'REST API'], 'https://github.com')" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+                                    <span>Batafsil ko'rish</span>
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" aria-label="GitHub Link">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 shadow-lg" data-category="design">
+                        <div class="h-52 bg-gradient-to-tr from-cyan-900 via-slate-900 to-indigo-950 p-6 relative overflow-hidden flex items-center justify-center">
+                            <div class="w-full h-full bg-slate-800/80 rounded-xl border border-slate-700 p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-300 flex flex-col justify-center items-center">
+                                <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-3xl mb-2">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </div>
+                                <span class="text-xs text-slate-300 font-semibold">Bank App Redesign</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-cyan-50 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-300 text-xs font-semibold">Figma</span>
+                                <span class="px-2.5 py-1 rounded-md bg-cyan-50 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-300 text-xs font-semibold">UI/UX</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-500 transition-colors">NeoBank - Mobil App Dizayni</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                                Bank va moliya ilovasi uchun yaratilgan zamonaviy, minimalistik mobil UI/UX konsept dizayni.
+                            </p>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('NeoBank - Mobil App Dizayni', 'Figma platformasida tayyorlangan ushbu dizayn loyihasi zamonaviy bank tizimining barcha oyna va interfeyslarini o\'z ichiga oladi: o\'tkazmalar, valyuta ayirboshlash va xarajatlar tahlili.', ['Figma', 'UI/UX Research', 'Prototyping'], 'https://figma.com')" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+                                    <span>Batafsil ko'rish</span>
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" aria-label="GitHub Link">
+                                    <i class="fa-brands fa-figma text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                        Men Bilan Bog'laning
+                    </h2>
+                    <div class="w-16 h-1 bg-indigo-600 mx-auto rounded-full"></div>
+                    <p class="text-slate-600 dark:text-slate-400 mt-4 text-base sm:text-lg">
+                        Yangi loyihangiz bormi yoki takliflar bo'yicha gaplashmoqchimisiz? Menga xabar qoldiring!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left: Contact Details -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div class="glass-card p-6 rounded-2xl flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg">Email manzil</h3>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1 font-mono">mirsaid.dev@gmail.com</p>
+                                <div class="flex items-center gap-4 mt-2">
+                                    <a href="mailto:mirsaid.dev@gmail.com" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+                                        Xat yuborish &rarr;
+                                    </a>
+                                    <button id="copyEmailBtn" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-600 flex items-center gap-1">
+                                        <i class="fa-regular fa-copy"></i>
+                                        <span>Nusxalash</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-brands fa-telegram"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg">Telegram</h3>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">@mirsaid_dev</p>
+                                <a href="https://t.me/mirsaid_dev" target="_blank" class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 mt-2 inline-block hover:underline">Telegramda yozish &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg">Joylashuv</h3>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Toshkent shahri, O'zbekiston</p>
+                                <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-2 inline-block">Masofaviy ishlashga tayyorman</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Contact Form connected to Telegram Bot API -->
+                    <div class="lg:col-span-7">
+                        <form id="contactForm" class="glass-card p-8 rounded-3xl space-y-6 shadow-xl">
+                            <div>
+                                <label for="userName" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ismingiz</label>
+                                <input type="text" id="userName" required placeholder="Masalan: Ali Valiyev" class="w-full px-4 py-3.5 rounded-xl bg-slate-100/70 dark:bg-slate-800/70 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                            </div>
+
+                            <div>
+                                <label for="userEmail" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email yoki Telefon</label>
+                                <input type="text" id="userEmail" required placeholder="ali@example.com yoki +998 90 123 45 67" class="w-full px-4 py-3.5 rounded-xl bg-slate-100/70 dark:bg-slate-800/70 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                            </div>
+
+                            <div>
+                                <label for="userMessage" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Xabaringiz</label>
+                                <textarea id="userMessage" rows="5" required placeholder="Loyiha tafsilotlari yoki taklifingizni yozing..." class="w-full px-4 py-3.5 rounded-xl bg-slate-100/70 dark:bg-slate-800/70 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-bold text-base shadow-lg shadow-indigo-500/25 transition-all flex items-center justify-center gap-2">
+                                <span id="btnText">Telegram Orqali Yuborish</span>
+                                <i id="btnIcon" class="fa-paper-plane fa-solid text-sm"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p class="text-sm text-slate-500 dark:text-slate-400 text-center sm:text-left">
+                &copy; <span id="year"></span> Mirsaid. Barcha huquqlar himoyalangan.
+            </p>
+
+            <!-- Back to Top Button -->
+            <button id="backToTopBtn" aria-label="Tepaga qaytish" class="w-10 h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center shadow-lg transition-transform hover:-translate-y-1">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP FOR PROJECT DETAILS -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-opacity duration-300">
+        <div class="glass-card bg-white dark:bg-slate-900 max-w-xl w-full rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-slate-700">
+            <button onclick="closeModal()" aria-label="Yopish" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 id="modalTitle" class="text-2xl font-bold text-slate-900 dark:text-white mb-3"></h3>
+            <p id="modalDesc" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6"></p>
+
+            <div class="mb-6">
+                <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Ishlatilgan texnologiyalar:</h4>
+                <div id="modalTags" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a id="modalDemoLink" href="#" target="_blank" class="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-center text-sm shadow-md transition-all">
+                    Jonli ko'rish
+                </a>
+                <button onclick="closeModal()" class="px-5 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm hover:bg-slate-300 transition-all">
+                    Yopish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden max-w-sm px-5 py-4 rounded-2xl text-white shadow-2xl flex items-center gap-3 transition-all duration-300 bg-emerald-600">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-xl"></i>
+        <span id="toastMsg" class="text-sm font-medium"></span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dark / Light Mode Switcher
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+        } else {
+            html.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenuIcon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                mobileMenuIcon.className = 'fa-solid fa-xmark text-xl';
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.className = 'fa-solid fa-bars text-xl';
+            });
+        });
+
+        // Project Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-indigo-600', 'text-white');
+                    b.classList.add('bg-slate-200/80', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                });
+
+                btn.classList.add('active', 'bg-indigo-600', 'text-white');
+                btn.classList.remove('bg-slate-200/80', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Logic
+        const projectModal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalTags = document.getElementById('modalTags');
+        const modalDemoLink = document.getElementById('modalDemoLink');
+
+        function openModal(title, desc, tags, link) {
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
+            modalDemoLink.href = link;
+
+            modalTags.innerHTML = '';
+            tags.forEach(tag => {
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'px-3 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 font-semibold text-xs';
+                tagSpan.textContent = tag;
+                modalTags.appendChild(tagSpan);
+            });
+
+            projectModal.classList.remove('hidden');
+            projectModal.classList.add('flex');
+        }
+
+        function closeModal() {
+            projectModal.classList.add('hidden');
+            projectModal.classList.remove('flex');
+        }
+
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                closeModal();
+            }
+        });
+
+        // One-Click Email Copy
+        document.getElementById('copyEmailBtn').addEventListener('click', () => {
+            const email = 'mirsaid.dev@gmail.com';
+            const dummy = document.createElement('textarea');
+            document.body.appendChild(dummy);
+            dummy.value = email;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            showToast('Email nusxalandi: ' + email, 'success');
+        });
+
+        // Download CV simulator
+        document.getElementById('downloadCvBtn').addEventListener('click', () => {
+            showToast('Rezyume yuklab olish boshlandi!', 'success');
+        });
+
+        // Contact Form Telegram Bot API Integration
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+
+        const BOT_TOKEN = '9025053006:AAGlr_RBnfkNY1Wx7TnxdnhfdZpOWLZv3Q4';
+        const CHAT_ID = '8146227004';
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const message = document.getElementById('userMessage').value.trim();
+
+            if (!name || !email || !message) {
+                showToast("Iltimos, barcha maydonlarni to'ldiring!", "error");
+                return;
+            }
+
+            // Set loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.textContent = "Yuborilmoqda...";
+            btnIcon.className = "fa-solid fa-circle-notch fa-spin text-sm";
+
+            // Format message string
+            const formattedMessage = `📩 *Yangi Portfolio Xabari*\n\n👤 *Ism:* ${name}\n📧 *Aloqa:* ${email}\n💬 *Xabar:* ${message}\n\n⏰ *Sana:* ${new Date().toLocaleString('uz-UZ')}`;
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: formattedMessage,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    showToast(`Rahmat, ${name}! Xabaringiz Telegram orqali muvaffaqiyatli yuborildi.`, 'success');
+                    contactForm.reset();
+                } else {
+                    throw new Error(data.description || 'Xabarni yuborishda xatolik');
+                }
+            } catch (err) {
+                console.error('Telegram API Error:', err);
+                showToast("Xabar yuborishda xatolik yuz berdi. Internetni tekshiring yoki qaytadan urinib ko'ring.", 'error');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                btnText.textContent = "Telegram Orqali Yuborish";
+                btnIcon.className = "fa-solid fa-paper-plane text-sm";
+            }
+        });
+
+        // Toast Helper
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.textContent = message;
+
+            if (type === 'error') {
+                toast.className = 'fixed bottom-6 right-6 z-50 max-w-sm px-5 py-4 rounded-2xl text-white shadow-2xl flex items-center gap-3 transition-all duration-300 bg-rose-600';
+                toastIcon.className = 'fa-solid fa-circle-exclamation text-xl';
+            } else {
+                toast.className = 'fixed bottom-6 right-6 z-50 max-w-sm px-5 py-4 rounded-2xl text-white shadow-2xl flex items-center gap-3 transition-all duration-300 bg-emerald-600';
+                toastIcon.className = 'fa-solid fa-circle-check text-xl';
+            }
+
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4500);
+        }
+
+        // Back to Top Button Logic
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
